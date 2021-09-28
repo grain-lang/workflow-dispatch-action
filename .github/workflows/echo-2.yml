@@ -1,0 +1,16 @@
+name: Echo Tag 2
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to echo"
+        required: false
+        default: "tag-v1.2.3"
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo tag
+        run: echo '${{ github.event.inputs.tag }}'

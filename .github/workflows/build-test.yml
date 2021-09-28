@@ -1,0 +1,60 @@
+name: Build & Test
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Build with ncc
+        run: |
+          yarn install
+          yarn build
+
+      - name: Invoke echo 1 workflow using this action
+        uses: ./
+        with:
+          workflow: Echo Tag 1
+          token: ${{ secrets.WORKFLOW_TOKEN }}
+          ref: ${{ github.ref }}
+          repo: ${{ github.repository }}
+          tag_input: tag-v3.4.5
+
+      - name: Invoke echo 2 workflow using this action
+        uses: ./
+        with:
+          workflow: Echo Tag 2
+          token: ${{ secrets.WORKFLOW_TOKEN }}
+          ref: ${{ github.ref }}
+          repo: ${{ github.repository }}
+          tag_input: ""
+
+      - name: Invoke echo 1 workflow by id
+        uses: ./
+        with:
+          workflow: "13615563"
+          token: ${{ secrets.WORKFLOW_TOKEN }}
+          ref: ${{ github.ref }}
+          repo: ${{ github.repository }}
+          tag_input: tag-v5.6.7
+
+      - name: Configure git
+        run: |
+          git config user.name grainbot[bot]
+          git config user.email bot@grain-lang.org
+
+      # We use continue-on-error here because a rebuild might be empty
+      - name: Commit updates
+        continue-on-error: true
+        run: |
+          git add dist/
+          git commit -m 'chore: Update built JavaScript'
+
+      - name: Push updates
+        run: |
+          git push

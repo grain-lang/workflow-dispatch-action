@@ -1,25 +1,38 @@
 {
-  "name": "workflow-dispatch",
+  "name": "workflow-dispatch-action",
   "version": "1.1.0",
   "description": "Trigger running GitHub Actions workflows",
+  "private": true,
+  "license": "MIT",
+  "homepage": "https://grain-lang.org",
+  "funding": "https://github.com/sponsors/grain-lang",
+  "author": "Grain Core Team <team@grain-lang.org> (https://grain-lang.org)",
+  "contributors": [
+    "Ben Coleman",
+    "Blaine Bublitz <blaine@grain-lang.org>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grain-lang/workflow-dispatch-action.git"
+  },
   "main": "dist/index.js",
   "scripts": {
     "build": "ncc build src/main.ts -o dist",
     "lint": "eslint src/"
   },
+  "dependencies": {},
+  "devDependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^5.0.0",
+    "@vercel/ncc": "^0.31.1",
+    "@typescript-eslint/eslint-plugin": "^4.32.0",
+    "@typescript-eslint/parser": "^4.32.0",
+    "eslint": "^7.4.0",
+    "typescript": "^4.4.3"
+  },
   "keywords": [
     "github",
-    "actions"
-  ],
-  "author": "Ben Coleman",
-  "license": "MIT",
-  "devDependencies": {
-    "@actions/core": "^1.2.4",
-    "@actions/github": "^4.0.0",
-    "@zeit/ncc": "^0.22.3",
-    "@typescript-eslint/eslint-plugin": "^3.5.0",
-    "@typescript-eslint/parser": "^3.5.0",
-    "eslint": "^7.4.0",
-    "typescript": "^3.9.6"
-  }
+    "actions",
+    "workflow_dispatch"
+  ]
 }
