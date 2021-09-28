@@ -1,6 +1,6 @@
 {
   "name": "workflow-dispatch-action",
-  "version": "1.1.0",
+  "version": "0.1.0",
   "description": "Trigger running GitHub Actions workflows",
   "private": true,
   "license": "MIT",
