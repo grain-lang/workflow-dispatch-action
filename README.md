@@ -47,7 +47,7 @@ None
   with:
     workflow: Grain Release
     token: ${{ secrets.WORKFLOW_TOKEN }}
-    ref: master
+    ref: main
     repo: grain-lang/grain-lang.org
     tag_input: grain-v0.4.3
 ```
